@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using Game.Base;
-using Game.Resource;
 using UnityEngine;
 
 
@@ -19,9 +17,12 @@ public class ActionManager
     private static ActionManager m_sInstance;
     public static ActionManager sInstance
     {
-        if(m_sInstance == null)
-            m_sInstance = new ActionManager();
-        return m_sInstance;
+        get
+        {
+            if(m_sInstance == null)
+                m_sInstance = new ActionManager();
+            return m_sInstance;
+        }
     }
 
     private Dictionary<int, CAction> m_mapAction = new Dictionary<int, CAction>();  //action集合
@@ -52,7 +53,7 @@ public class ActionManager
     /// <param name="action"></param>
     public void AddAction(CAction action)
     {
-        int id = action.GetID();
+        int id = action.ID;
         if(this.m_mapAction.ContainsKey(id))
         {
             Debug.LogWarning("Action id is already exist. " + id);

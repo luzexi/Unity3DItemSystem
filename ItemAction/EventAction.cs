@@ -32,9 +32,24 @@ public class EventAction
     }
 
     //get id
-    public int GetID()
+    public int ID
     {
-        return this.m_iID;
+        get
+        {
+            return this.m_iID;
+        }
+    }
+
+    //set action
+    public void SetAction( int[] act )
+    {
+        this.m_vecActions = act;
+    }
+
+    //set require
+    public void SetRequire( int[] req )
+    {
+        this.m_vecReqActions = req;
     }
 
     //excute action
@@ -42,7 +57,7 @@ public class EventAction
     {
         for (int i = 0; i < this.m_vecActions.Length; i++)
         {
-            CAction action = ActionManager.GetInstance().GetAction(this.m_vecActions[i]);
+            CAction action = ActionManager.sInstance.GetAction(this.m_vecActions[i]);
             if (action != null)
             {
                 ActionError error = action.Excute(input);
@@ -58,7 +73,7 @@ public class EventAction
     {
         for (int i = 0; i < this.m_vecReqActions.Length; i++)
         {
-            CAction action = ActionManager.GetInstance().GetAction(this.m_vecReqActions[i]);
+            CAction action = ActionManager.sInstance.GetAction(this.m_vecReqActions[i]);
             if (action != null)
             {
                 ActionError error = action.Excute(input);
@@ -74,7 +89,7 @@ public class EventAction
     {
         for (int i = 0; i < this.m_vecActions.Length; i++)
         {
-            CAction action = ActionManager.GetInstance().GetAction(this.m_vecActions[i]);
+            CAction action = ActionManager.sInstance.GetAction(this.m_vecActions[i]);
             if (action != null)
             {
                 ActionError error = action.RollBack(input);

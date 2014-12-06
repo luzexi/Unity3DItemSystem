@@ -15,11 +15,14 @@ using UnityEngine;
 public class EventActionManager
 {
     private static EventActionManager m_sInstance;
-    public static EventActionManager sIntance
+    public static EventActionManager sInstance
     {
-        if(m_sInstance == null)
-            m_sInstance = new EventActionManager();
-        return m_sInstance;
+        get
+        {
+            if(m_sInstance == null)
+                m_sInstance = new EventActionManager();
+            return m_sInstance;
+        }
     }
 
     private Dictionary<int, EventAction> m_mapEvent = new Dictionary<int, EventAction>();   //event set
@@ -63,8 +66,9 @@ public class EventActionManager
     }
 
     //add event action
-    public void AddEvent( int id , EventAction ea )
+    public void AddEvent( EventAction ea )
     {
+        int id = ea.ID;
         if(this.m_mapEvent.ContainsKey(id))
         {
             Debug.LogWarning("Event ID is already exist. " + id);

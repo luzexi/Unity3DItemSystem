@@ -30,8 +30,11 @@ public abstract class CAction : IAction
     }
 
     //get id
-    public int GetID()
+    public int ID
     {
-        return this.m_iID;
+        get
+        {
+            return this.m_iID;
+        }
     }
 }
